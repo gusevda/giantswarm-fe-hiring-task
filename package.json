@@ -27,6 +27,23 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "prettier": {
+    "printWidth": 80,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "trailingComma": "es5",
+    "useTabs": false,
+    "tabWidth": 2,
+    "semi": true,
+    "quoteProps": "as-needed",
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "arrowParens": "always",
+    "parser": "typescript",
+    "proseWrap": "preserve",
+    "endOfLine": "lf",
+    "embeddedLanguageFormatting": "auto"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
