@@ -1,3 +1,5 @@
+import delay from '../../utils/dalay';
+
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 /**
@@ -8,7 +10,6 @@ function decorateApps(apps: IAppFromAPI[]): IApp[] {
     return Object.assign(app, { slug: `${app.name}-${app.id}` });
   });
 }
-
 interface IHttpException {
   statusCode: number;
   message: string;
