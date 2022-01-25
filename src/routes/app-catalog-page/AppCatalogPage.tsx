@@ -6,7 +6,6 @@ export default function AppCatalogPage() {
   return (
     <Section>
       <Container>
-        <h1>App Catalog Page</h1>
         <AppCatalog />
       </Container>
     </Section>

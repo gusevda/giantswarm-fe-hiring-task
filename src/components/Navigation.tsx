@@ -23,7 +23,8 @@ const NavMenu = styled(List)<INavMenuProps>`
   padding: 8px 16px;
   right: 0;
   bottom: 100%;
-  background: ${(props) => props.theme.colors['slate-100']};
+  background: ${(props) => props.theme.colors['slate-200']};
+  border-top: 1px solid ${(props) => props.theme.colors['slate-300']};
 
   ${forTablet} {
     position: static;
@@ -31,6 +32,7 @@ const NavMenu = styled(List)<INavMenuProps>`
     width: auto;
     height: auto;
     background: unset;
+    border-top: unset;
     flex-direction: row;
     align-items: normal;
     margin: 0 -16px;

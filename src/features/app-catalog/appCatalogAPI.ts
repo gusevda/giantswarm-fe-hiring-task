@@ -18,7 +18,7 @@ type IAppFromAPI = Omit<IApp, 'slug'>;
 type JSONResponse = IAppFromAPI[] | IHttpException;
 
 export async function fetchApps() {
-  const response = await fetch(`${SERVER_URL}/apps`);
+  const response = await fetch(`http://192.168.68.100:3000/apps`);
   const data: JSONResponse = await response.json();
 
   if (response.ok) {

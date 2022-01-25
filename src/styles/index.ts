@@ -26,9 +26,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 116px;
+    min-height: 100%;
     line-height: inherit;
     color: ${(props) => props.theme.colors['slate-900']};
+
+    ${forTablet} {
+      padding: 0;
+    }
   }
 
   a {
@@ -90,5 +97,15 @@ export const GlobalStyle = createGlobalStyle`
 
   :disabled {
     cursor: default;
+  }
+
+  #root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1
   }
 `;

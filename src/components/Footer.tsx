@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box, Container } from '../styles/components';
+import { Container } from '../styles/components';
 import { forTablet } from '../styles';
 
 const StyledFooter = styled.footer`
@@ -15,7 +15,7 @@ const StyledFooter = styled.footer`
 
 const Footer = () => (
   <StyledFooter>
-    <Container>Hiring Task, 2022</Container>
+    <Container>Giant Swarm Hiring Task, 2022</Container>
   </StyledFooter>
 );
 
