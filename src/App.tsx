@@ -1,20 +1,19 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { AppRoutes } from './constants/routes';
+import { Outlet } from 'react-router-dom';
+import { GlobalStyle } from './styles';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div>
-      <header>
-        <Link to={AppRoutes.Home}>Home</Link>
-        <nav>
-          <Link to={AppRoutes.AppCatalog}>App Catalog</Link>
-        </nav>
-      </header>
+    <>
+      <GlobalStyle />
+      <Header />
       <main>
         <Outlet />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
 
