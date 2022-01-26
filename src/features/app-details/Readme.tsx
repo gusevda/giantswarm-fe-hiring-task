@@ -19,7 +19,7 @@ const ReadmeWrapper = styled.div`
   ${forTablet} {
     margin-left: 0;
     margin-right: 0;
-    border-radius: 4px;
+    border-radius: ${(props) => props.theme.borderRadius};
     overflow: hidden;
     border: 1px solid ${(props) => props.theme.colors['slate-300']};
   }

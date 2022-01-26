@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Button = styled.button`
   display: block;
   color: ${(props) => props.theme.colors['slate-700']};
-  border-radius: 4px;
+  border-radius: ${(props) => props.theme.borderRadius};
 
   &:hover {
     color: ${(props) => props.theme.colors['slate-900']};
