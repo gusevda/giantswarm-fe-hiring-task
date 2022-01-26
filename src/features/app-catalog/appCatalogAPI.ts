@@ -1,4 +1,4 @@
-import delay from '../../utils/dalay';
+// import delay from '../../utils/dalay';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -18,7 +18,8 @@ type IAppFromAPI = Omit<IApp, 'slug'>;
 type JSONResponse = IAppFromAPI[] | IHttpException;
 
 export async function fetchApps() {
-  const response = await fetch(`http://192.168.68.100:3000/apps`);
+  // await delay(2000);
+  const response = await fetch(`${SERVER_URL}/apps`);
   const data: JSONResponse = await response.json();
 
   if (response.ok) {
