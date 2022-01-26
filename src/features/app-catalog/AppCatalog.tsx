@@ -7,9 +7,13 @@ import { Box } from '../../styles/components';
 import {
   fetchAppsAsync,
   setSearchQuery,
+  setFilter,
+  clearFilter,
+  clearAllFilters,
   selectApps,
   selectStatus,
   selectSearchQuery,
+  selectFilters,
 } from './appCatalogSlice';
 import AppList from './AppList';
 import SearchForm from './SearchForm';
@@ -32,33 +36,53 @@ const Layout = styled.div`
     display: grid;
     grid-template-columns: 240px auto;
     grid-template-rows: auto auto;
-    column-gap: 16px;
+    column-gap: 36px;
     row-gap: 16px;
+    align-items: start;
     grid-template-areas:
       '. search'
       'filters content';
 
-    *:nth-child(1) {
+    > *:nth-child(1) {
       grid-area: search;
     }
 
-    *:nth-child(2) {
+    > *:nth-child(2) {
       grid-area: filters;
     }
 
-    *:nth-child(3) {
+    > *:nth-child(3) {
       grid-area: content;
     }
   }
 `;
 
-function useFilteredApps(apps: IApp[], searchQuery: string) {
+function getAuthorOptions(apps: IApp[]): ISelectOption[] {
+  let authors: string[] = [];
+
+  apps.forEach((app) => {
+    if (app.author !== undefined && authors.indexOf(app.author) === -1) {
+      authors.push(app.author);
+    }
+  });
+
+  return authors.map((author) => ({
+    value: author,
+    text: author,
+  }));
+}
+
+function useFilteredApps(
+  apps: IApp[],
+  searchQuery: string,
+  filters: IAppCatalogFilters
+) {
   const [filteredApps, setFilteredApps] = React.useState(apps);
 
   React.useEffect(() => {
-    const res = filterApps(apps, searchQuery);
+    const res = filterApps(apps, searchQuery, filters);
     setFilteredApps(res);
-  }, [searchQuery, apps]);
+  }, [searchQuery, filters, apps]);
 
   return [filteredApps];
 }
@@ -68,12 +92,15 @@ export default function AppCatalog() {
   const apps = useAppSelector(selectApps);
   const dispatch = useAppDispatch();
 
+  const authorOptions = getAuthorOptions(apps);
+
   React.useEffect(() => {
     dispatch(fetchAppsAsync());
   }, [dispatch]);
 
   const searchQuery = useAppSelector(selectSearchQuery);
-  const [filteredApps] = useFilteredApps(apps, searchQuery);
+  const filters = useAppSelector(selectFilters);
+  const [filteredApps] = useFilteredApps(apps, searchQuery, filters);
 
   const handleSearchQueryChange = React.useCallback(
     (value: string) => {
@@ -86,6 +113,18 @@ export default function AppCatalog() {
     dispatch(setSearchQuery(value));
   }
 
+  function handleFilterChange(key: string, value: string | null) {
+    if (value === null) {
+      dispatch(clearFilter(key));
+    } else {
+      dispatch(setFilter({ key, value }));
+    }
+  }
+
+  function handleFiltersClear() {
+    dispatch(clearAllFilters());
+  }
+
   return (
     <>
       <Heading>App Catalog</Heading>
@@ -95,7 +134,12 @@ export default function AppCatalog() {
           onChange={handleSearchQueryChange}
           onSubmit={handleSearchFormSubmit}
         />
-        <Filters />
+        <Filters
+          filters={filters}
+          authorOptions={authorOptions}
+          onChange={handleFilterChange}
+          onClear={handleFiltersClear}
+        />
         <AppListWrapper>
           {status === 'loading' ? <Spinner delay={300} /> : null}
           {status === 'idle' && filteredApps.length > 0 ? (

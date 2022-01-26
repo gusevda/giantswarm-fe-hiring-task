@@ -9,3 +9,10 @@ interface IApp {
   author?: string;
   slug: string;
 }
+
+type IAppCatalogFilters = { [key: string]: string };
+
+interface ISelectOption {
+  value: string;
+  text: string;
+}

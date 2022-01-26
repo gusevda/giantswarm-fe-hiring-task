@@ -15,11 +15,12 @@ const StyledList = styled(List)`
 
 const StyledListItem = styled(ListItem)`
   border-bottom: 1px solid ${(props) => props.theme.colors['slate-100']};
+  border-top: 1px solid transparent;
   padding: 16px 0;
   cursor: pointer;
 
   ${forTablet} {
-    padding: 16px 8px;
+    padding: 16px;
   }
 
   &:last-child {
