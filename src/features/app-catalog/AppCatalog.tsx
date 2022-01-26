@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import Spinner from '../../components/Spinner';
 import ErrorMessage from '../../components/ErrorMessage';
-import { Box } from '../../styles/components';
+import { Box, SectionHeading } from '../../styles/components';
 import {
   fetchAppsAsync,
   setSearchQuery,
@@ -20,11 +20,6 @@ import SearchForm from './SearchForm';
 import Filters from './Filters';
 import { forTablet } from '../../styles';
 import filterApps from './filterApps';
-
-const Heading = styled.h1`
-  font-size: 24px;
-  margin-bottom: 48px;
-`;
 
 const AppListWrapper = styled(Box)`
   align-items: center;
@@ -88,19 +83,16 @@ function useFilteredApps(
 }
 
 export default function AppCatalog() {
+  const dispatch = useAppDispatch();
   const { status, error } = useAppSelector(selectStatus);
   const apps = useAppSelector(selectApps);
-  const dispatch = useAppDispatch();
-
-  const authorOptions = getAuthorOptions(apps);
+  const searchQuery = useAppSelector(selectSearchQuery);
+  const filters = useAppSelector(selectFilters);
+  const [filteredApps] = useFilteredApps(apps, searchQuery, filters);
 
   React.useEffect(() => {
     dispatch(fetchAppsAsync());
   }, [dispatch]);
-
-  const searchQuery = useAppSelector(selectSearchQuery);
-  const filters = useAppSelector(selectFilters);
-  const [filteredApps] = useFilteredApps(apps, searchQuery, filters);
 
   const handleSearchQueryChange = React.useCallback(
     (value: string) => {
@@ -125,9 +117,11 @@ export default function AppCatalog() {
     dispatch(clearAllFilters());
   }
 
+  const authorOptions = getAuthorOptions(apps);
+
   return (
     <>
-      <Heading>App Catalog</Heading>
+      <SectionHeading>App Catalog</SectionHeading>
 
       <Layout>
         <SearchForm

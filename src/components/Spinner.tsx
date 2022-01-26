@@ -14,9 +14,15 @@ const rotate = keyframes`
   }
 `;
 
-const Wrapper = styled(Box)`
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: ${(props) => props.theme.colors['slate-500']};
-  animation: ${rotate} 2s linear infinite;
+
+  > svg {
+    animation: ${rotate} 2s linear infinite;
+  }
 `;
 
 interface ISpinnerProps {

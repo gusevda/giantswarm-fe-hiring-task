@@ -1,20 +1,8 @@
-// import delay from '../../utils/dalay';
+import delay from '../../utils/dalay';
+import { decorateApps } from '../../utils/apps';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-/**
- * Adds additional properties to the apps fetched from the API
- */
-function decorateApps(apps: IAppFromAPI[]): IApp[] {
-  return apps.map((app) => {
-    return Object.assign(app, { slug: `${app.name}-${app.id}` });
-  });
-}
-interface IHttpException {
-  statusCode: number;
-  message: string;
-}
-type IAppFromAPI = Omit<IApp, 'slug'>;
 type JSONResponse = IAppFromAPI[] | IHttpException;
 
 export async function fetchApps() {
