@@ -5,24 +5,17 @@ import { forTablet } from '../../styles';
 import { Input, PrimaryButton } from '../../styles/components';
 
 const Form = styled.form`
-  position: fixed;
-  left: 0;
-  bottom: 65px;
-  width: 100%;
-  padding: 8px 16px;
-  background-color: ${(props) => props.theme.colors['slate-200']};
-  border-top: 1px solid ${(props) => props.theme.colors['slate-300']};
   display: flex;
+  margin: 0 -16px;
+  padding: 16px;
+  background-color: ${(props) => props.theme.colors['slate-200']};
+  border-bottom: 1px solid ${(props) => props.theme.colors['slate-300']};
 
   ${forTablet} {
-    position: static;
-    left: unset;
-    bottom: unset;
-    width: auto;
-    max-width: 500px;
-    background-color: unset;
-    border-top: unset;
+    margin: 0;
     padding: 0;
+    background-color: unset;
+    border-bottom: unset;
   }
 `;
 

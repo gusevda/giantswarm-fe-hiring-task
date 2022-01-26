@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import Spinner from '../../components/Spinner';
 import ErrorMessage from '../../components/ErrorMessage';
-import { Box, SectionHeading } from '../../styles/components';
+import { SectionHeading } from '../../styles/components';
 import {
   fetchAppsAsync,
   setSearchQuery,
@@ -18,13 +18,8 @@ import {
 import AppList from './AppList';
 import SearchForm from './SearchForm';
 import Filters from './Filters';
-import { forTablet } from '../../styles';
+import { forTablet, forDesktop } from '../../styles';
 import filterApps from './filterApps';
-
-const AppListWrapper = styled(Box)`
-  align-items: center;
-  justify-content: center;
-`;
 
 const Layout = styled.div`
   ${forTablet} {
@@ -39,18 +34,47 @@ const Layout = styled.div`
       'filters content';
 
     > *:nth-child(1) {
-      grid-area: search;
+      grid-area: filters;
     }
 
     > *:nth-child(2) {
-      grid-area: filters;
+      grid-area: search;
     }
 
     > *:nth-child(3) {
       grid-area: content;
     }
   }
+
+  ${forDesktop} {
+    grid-template-columns: 320px auto;
+  }
 `;
+
+const Content = styled.div`
+  margin-top: 16px;
+
+  ${forTablet} {
+    margin-top: 0;
+  }
+`;
+
+interface IFilteredAppsProps {
+  apps: IApp[];
+  searchQuery: string;
+}
+
+const FilteredApps: React.FC<IFilteredAppsProps> = ({ apps, searchQuery }) => {
+  if (searchQuery.trim() !== '' && apps.length === 0) {
+    return (
+      <ErrorMessage>
+        No applications found for the query - <strong>{searchQuery}</strong>
+      </ErrorMessage>
+    );
+  }
+
+  return <AppList apps={apps} />;
+};
 
 function getAuthorOptions(apps: IApp[]): ISelectOption[] {
   let authors: string[] = [];
@@ -124,33 +148,27 @@ export default function AppCatalog() {
       <SectionHeading>App Catalog</SectionHeading>
 
       <Layout>
-        <SearchForm
-          onChange={handleSearchQueryChange}
-          onSubmit={handleSearchFormSubmit}
-        />
         <Filters
           filters={filters}
           authorOptions={authorOptions}
           onChange={handleFilterChange}
           onClear={handleFiltersClear}
         />
-        <AppListWrapper>
+        <SearchForm
+          onChange={handleSearchQueryChange}
+          onSubmit={handleSearchFormSubmit}
+        />
+        <Content>
           {status === 'loading' ? <Spinner delay={300} /> : null}
-          {status === 'idle' && filteredApps.length > 0 ? (
-            <AppList apps={filteredApps} />
-          ) : null}
-          {status === 'idle' && filteredApps.length === 0 ? (
-            <ErrorMessage>
-              No applications found for the query -{' '}
-              <strong>{searchQuery}</strong>
-            </ErrorMessage>
+          {status === 'idle' ? (
+            <FilteredApps apps={filteredApps} searchQuery={searchQuery} />
           ) : null}
           {status === 'failed' ? (
             <ErrorMessage error={error}>
               Something bad happened while loading applications
             </ErrorMessage>
           ) : null}
-        </AppListWrapper>
+        </Content>
       </Layout>
     </>
   );

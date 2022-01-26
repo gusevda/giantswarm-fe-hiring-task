@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     display: flex;
     flex-direction: column;
-    padding-bottom: 116px;
+    padding-bottom: 65px;
     min-height: 100%;
     line-height: inherit;
     color: ${(props) => props.theme.colors['slate-900']};
