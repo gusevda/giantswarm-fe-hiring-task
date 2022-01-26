@@ -111,7 +111,7 @@ interface IAppListProps {
 
 const AppList: React.FC<IAppListProps> = ({ apps }) => {
   return (
-    <StyledList>
+    <StyledList data-testid="app-list">
       {apps.map((app) => (
         <App key={app.id} app={app} />
       ))}
