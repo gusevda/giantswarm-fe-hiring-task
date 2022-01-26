@@ -1,11 +1,8 @@
 import styled from 'styled-components';
-import { Box, Container } from '../styles/components';
+import { Container } from '../styles/components';
 import { forTablet } from '../styles';
 
 const StyledFooter = styled.footer`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   padding: 8px 0;
   color: white;
   background-color: ${(props) => props.theme.colors['slate-700']};
@@ -18,7 +15,7 @@ const StyledFooter = styled.footer`
 
 const Footer = () => (
   <StyledFooter>
-    <Container>Hiring Task, 2022</Container>
+    <Container>Giant Swarm Hiring Task, 2022</Container>
   </StyledFooter>
 );
 
