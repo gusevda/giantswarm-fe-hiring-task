@@ -6,6 +6,7 @@ import List from './List';
 import ListItem from './ListItem';
 import PrimaryButton from './PrimaryButton';
 import Section from './Section';
+import SectionHeading from './SectionHeading';
 import Select from './Select';
 
 export {
@@ -17,5 +18,6 @@ export {
   ListItem,
   PrimaryButton,
   Section,
+  SectionHeading,
   Select,
 };

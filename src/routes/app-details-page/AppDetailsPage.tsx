@@ -6,7 +6,6 @@ export default function AppDetailsPage() {
   return (
     <Section>
       <Container>
-        <h1>App Details Page</h1>
         <AppDetails />
       </Container>
     </Section>

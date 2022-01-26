@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 
 const Headings = styled(Box)`
   margin-bottom: 16px;
+  align-items: baseline;
 `;
 
 const Heading = styled.h3`

@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import appCatalogReducer from '../features/app-catalog/appCatalogSlice';
+import appDetailsSlice from '../features/app-details/appDetailsSlice';
 
 export const store = configureStore({
   reducer: {
     appCatalog: appCatalogReducer,
+    appDetails: appDetailsSlice,
   },
 });
 
