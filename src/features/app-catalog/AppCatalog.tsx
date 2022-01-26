@@ -30,7 +30,7 @@ const Layout = styled.div`
     row-gap: 16px;
     align-items: start;
     grid-template-areas:
-      '. search'
+      'filters search'
       'filters content';
 
     > *:nth-child(1) {
