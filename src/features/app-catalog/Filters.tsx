@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
   ${forTablet} {
     margin: 0;
-    border-radius: 4px;
+    border-radius: ${(props) => props.theme.borderRadius};
     border: 1px solid ${(props) => props.theme.colors['slate-300']};
   }
 `;

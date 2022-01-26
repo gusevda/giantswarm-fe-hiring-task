@@ -4,7 +4,7 @@ import { forTablet } from '..';
 const Input = styled.input`
   padding: 4px 8px;
   border: 1px solid ${(props) => props.theme.colors['slate-500']};
-  border-radius: 4px;
+  border-radius: ${(props) => props.theme.borderRadius};
 
   ${forTablet} {
     padding: 8px 16px;
