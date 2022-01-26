@@ -86,7 +86,7 @@ const Filters: React.FC<IFiltersProps> = (props) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="filters">
       <Headings>
         <Heading>Filters</Heading>
         <ClearAll href="#" onClick={handleClearAllClick}>

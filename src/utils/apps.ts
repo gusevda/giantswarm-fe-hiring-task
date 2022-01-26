@@ -24,5 +24,5 @@ export function decorateApps(apps: IAppFromAPI[]): IApp[] {
  */
 export function getIdFromSlug(slug: string) {
   const parts = slug.split('-');
-  return parts[parts.length - 1] || '';
+  return parts[parts.length - 1];
 }
