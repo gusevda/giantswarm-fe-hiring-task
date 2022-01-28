@@ -45,6 +45,7 @@ const Label = styled.label`
 const SelectBox = styled(Select)`
   display: block;
   width: 100%;
+  background-color: white;
 `;
 
 const ClearAll = styled.a`
