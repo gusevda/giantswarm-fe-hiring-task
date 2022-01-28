@@ -35,6 +35,7 @@ const ReadmeHeading = styled.div`
 const ReadmeContent = styled.div`
   padding: 16px;
   min-height: 100px;
+  overflow-x: scroll;
 `;
 
 interface IReadmeProps {
